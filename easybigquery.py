@@ -13,12 +13,8 @@ class GoogleAPIFromServiceAccount(object):
 	def readKey(self, keyPath):
 		"""Reads API private key stored at keyPath."""
 		try: 
-			# read key file
-			fileObject = file(keyPath, 'rb')
-			key = fileObject.read()
-			fileObject.close()
-			
-			# store key
+            with open(keyPath, 'rb') as f:
+                key = f.read()			
 			return key
 		except IOError, e:
 			print "Invalid key file specified: %d" % e
